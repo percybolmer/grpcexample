@@ -4,6 +4,8 @@ import "google.golang.org/grpc"
 
 func main() {
 
+	// We Generate a TLS grpc API
+	apiserver, err := GenerateTLSApi("")
 }
 
 // GenerateTLSApi will load TLS certificates and key and create a grpc server with those.
