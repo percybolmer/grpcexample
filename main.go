@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/percybolmer/grpcexample/interceptors"
 	pingpong "github.com/percybolmer/grpcexample/pingpong"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -71,8 +72,15 @@ func GenerateTLSApi(pemPath, keyPath string) (*grpc.Server, error) {
 		return nil, err
 	}
 
+	// Add PingCounter from the interceptors package
+	pc := interceptors.PingCounter{}
 	s := grpc.NewServer(
 		grpc.Creds(cred),
+		// Here we add the chaining of interceptors, they will execute in order
+		grpc.ChainUnaryInterceptor(
+			pc.ServerCount,
+			interceptors.LogRequest,
+		),
 	)
 	return s, nil
 }

@@ -11,6 +11,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "typescript": "^4.1.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -23,9 +24,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-      
     ],
-    "ignorePatterns": ["**/*_pb.js"]
+    "ignorePatterns": [
+      "**/*_pb.js"
+    ]
   },
   "browserslist": {
     "production": [
